@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/memory-card/static/css/main.3abfd268.css",
+    "main.js": "/memory-card/static/js/main.145729b2.js",
+    "static/media/upheavtt.ttf": "/memory-card/static/media/upheavtt.e3d365ba5fa6a65e9caf.ttf",
+    "static/media/IsaacGame.ttf": "/memory-card/static/media/IsaacGame.12c1246105ab553997d0.ttf",
+    "index.html": "/memory-card/index.html",
+    "main.3abfd268.css.map": "/memory-card/static/css/main.3abfd268.css.map",
+    "main.145729b2.js.map": "/memory-card/static/js/main.145729b2.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3abfd268.css",
+    "static/js/main.145729b2.js"
+  ]
+}
