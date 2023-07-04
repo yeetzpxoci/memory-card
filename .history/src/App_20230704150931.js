@@ -23,10 +23,9 @@ function App() {
     { id: 12, name: 'Lilith', clicked: false, src: 'https://www.spriters-resource.com/resources/sheet_icons/73/76018.png?updated=1465922550' }
   ]);
 
-  function resetCards() {
+  const resetCards() {
     const newCards = [...cards];
-    newCards.map(card => card.clicked = false);
-    updateCards(newCards);
+    newCards.map(card => card.clicked = false)
   }
 
   const randomizeCards = () => {

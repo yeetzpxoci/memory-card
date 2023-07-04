@@ -1,0 +1,33 @@
+body {
+    min-height: 100vh;
+    background-image: url('https://c4.wallpaperflare.com/wallpaper/592/701/180/the-binding-of-isaac-wallpaper-preview.jpg');
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+#header {
+    height: 100%;
+    width: 100%;
+    color: black;
+}
+
+.card {
+    height: 24rem;
+    width: 16rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+#card-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    row-gap: 1rem;
+    column-gap: 1rem;
+    height: 100%;
+    width: 100%;
+}

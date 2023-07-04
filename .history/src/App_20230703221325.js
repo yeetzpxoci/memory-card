@@ -1,0 +1,57 @@
+import React, { useState } from 'react';
+import "./style.css"
+
+import Header from "./Header"
+import CardContainer from "./CardContainer";
+
+function App() {
+  const[score, setScore] = useState(0);
+
+  const [cards, updateCards] = useState([
+    { id: 0, name: 'Isaac', clicked: false, src: 'https://www.spriters-resource.com/resources/sheet_icons/61/64491.png?updated=1460951999' },
+    { id: 1, name: 'Magdalene', clicked: false, src: 'https://www.spriters-resource.com/resources/sheet_icons/61/64498.png?updated=1460951999' },
+    { id: 2, name: 'Cain', clicked: false, src: 'https://www.spriters-resource.com/resources/sheet_icons/61/64589.png?updated=1460952006' },
+    { id: 3, name: 'Judas', clicked: false, src: 'https://www.spriters-resource.com/resources/sheet_icons/63/66588.png?updated=1460952151' },
+    { id: 4, name: '???', clicked: false, src: 'https://www.spriters-resource.com/resources/sheet_icons/61/64500.png?updated=1460952000' },
+    { id: 5, name: 'Eve', clicked: false, src: 'https://www.spriters-resource.com/resources/sheet_icons/63/66587.png?updated=1460952151' },
+    { id: 6, name: 'Samson', clicked: false, src: 'https://www.spriters-resource.com/resources/sheet_icons/61/64499.png?updated=1460951999' },
+    { id: 7, name: 'Azazel', clicked: false, src: 'https://www.spriters-resource.com/resources/sheet_icons/78/81088.png?updated=1469918302' },
+    { id: 8, name: 'Lazarus', clicked: false, src: 'https://www.spriters-resource.com/resources/sheet_icons/63/66615.png?updated=1460952153' },
+    { id: 9, name: 'Eden', clicked: false, src: 'https://www.spriters-resource.com/resources/sheet_icons/96/99086.png?updated=1508945174' },
+    { id: 10, name: 'Apollyon', clicked: false, src: 'https://www.spriters-resource.com/resources/sheet_icons/86/88871.png?updated=1487622175' },
+    { id: 11, name: 'Lilith', clicked: false, src: 'https://www.spriters-resource.com/resources/sheet_icons/73/76018.png?updated=1465922550' }
+  ]);
+
+  const randomizeCards = () => {
+    const newCards = [...cards];
+    for (var i = newCards.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var temp = newCards[i];
+      newCards[i] = newCards[j];
+      newCards[j] = temp;
+    }
+    updateCards(newCards);
+  }
+
+  const cardClicked = (cardID) => () => {
+    const card = cards.find(card => card.id == cardID);
+    if (!card.clicked) {
+      setScore(score + 1);
+      card.clicked = true;
+      const newCards = [...cards]
+    }
+    randomizeCards();
+  }
+
+  return (
+    <div>
+      <Header>
+        {score}
+      </Header>
+      <CardContainer cards={cards} cardClicked={cardClicked}>
+      </CardContainer>
+    </div>
+  );
+}
+
+export default App;

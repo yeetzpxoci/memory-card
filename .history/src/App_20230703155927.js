@@ -1,0 +1,43 @@
+import React, { useState } from 'react';
+import "./style.css"
+
+import Header from "./Header"
+import CardContainer from "./CardContainer";
+
+function App() {
+  const[cards, updateCards] = useState([
+    { name: 'Isaac', clicked: false, src: 'https://www.spriters-resource.com/resources/sheet_icons/61/64491.png?updated=1460951999'},
+    { name: 'Magdalene', clicked: false, src: 'https://www.spriters-resource.com/resources/sheet_icons/61/64498.png?updated=1460951999'},
+    { name: 'Cain', clicked: false, src: 'https://www.spriters-resource.com/resources/sheet_icons/61/64589.png?updated=1460952006'},
+    { name: 'Judas', clicked: false, src: 'https://www.spriters-resource.com/resources/sheet_icons/63/66588.png?updated=1460952151'},
+    { name: '???', clicked: false, src: 'https://www.spriters-resource.com/resources/sheet_icons/61/64500.png?updated=1460952000'},                         
+    { name: 'Eve', clicked: false, src: 'https://www.spriters-resource.com/resources/sheet_icons/63/66587.png?updated=1460952151'},
+    { name: 'Samson', clicked: false, src: 'https://www.spriters-resource.com/resources/sheet_icons/61/64499.png?updated=1460951999'},
+    { name: 'Azazel', clicked: false, src: 'https://www.spriters-resource.com/resources/sheet_icons/78/81088.png?updated=1469918302'},
+    { name: 'Lazarus', clicked: false, src: 'https://www.spriters-resource.com/resources/sheet_icons/63/66615.png?updated=1460952153'},
+    { name: 'Eden', clicked: false, src: 'https://www.spriters-resource.com/resources/sheet_icons/96/99086.png?updated=1508945174'},
+    { name: 'The Lost', clicked: false, src: 'lost.png'},
+    { name: 'Lilith', clicked: false, src: 'https://www.spriters-resource.com/resources/sheet_icons/73/76018.png?updated=1465922550'}
+  ]);
+
+  const randomizeCards = () => {
+    const newCards = [...cards];
+    for (var i = newCards.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var temp = newCards[i];
+      newCards[i] = newCards[j];
+      newCards[j] = temp;
+    }
+  }
+
+  return (
+    <div>
+      <Header></Header>
+      <CardContainer cards={cards}>
+        
+      </CardContainer>
+    </div>
+  );
+}
+
+export default App;

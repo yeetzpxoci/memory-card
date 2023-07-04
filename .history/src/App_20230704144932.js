@@ -6,7 +6,7 @@ import CardContainer from "./CardContainer";
 
 function App() {
   const[score, setScore] = useState(0);
-  const [highscore, setHighscore] = useState(0);
+  const[highscore, setHighscore] = useState(0);
 
   const [cards, updateCards] = useState([
     { id: 1, name: 'Isaac', clicked: false, src: 'https://www.spriters-resource.com/resources/sheet_icons/61/64491.png?updated=1460951999' },
@@ -23,12 +23,6 @@ function App() {
     { id: 12, name: 'Lilith', clicked: false, src: 'https://www.spriters-resource.com/resources/sheet_icons/73/76018.png?updated=1465922550' }
   ]);
 
-  function resetCards() {
-    const newCards = [...cards];
-    newCards.map(card => card.clicked = false);
-    updateCards(newCards);
-  }
-
   const randomizeCards = () => {
     const newCards = [...cards];
     for (var i = newCards.length - 1; i > 0; i--) {
@@ -41,25 +35,18 @@ function App() {
   }
 
   const cardClicked = (cardID) => () => {
-    const cardIndex = cards.findIndex(card => card.id === cardID);
-    const card = cards[cardIndex];
-
-    if (!card.clicked) {
-      const newScore = score + 1;
-      setScore(newScore);
-
-      if (highscore < newScore) {
-        setHighscore(newScore);
+    const updatedCards = cards.map(card => {
+      if (card.id === cardID && !card.clicked) {
+        setScore(score + 1);
+        if (highscore < score) {
+          setHighscore(score);
+        }
+      } else {
+        setScore(0);
       }
-
       card.clicked = true;
-    } else {
-      setScore(0);
-      resetCards();
-    }
-
-    const updatedCards = [...cards];
-    updatedCards[cardIndex] = card;
+      return card;
+    });
 
     updateCards(updatedCards);
     randomizeCards();
@@ -71,7 +58,7 @@ function App() {
 
   return (
     <div id='content'>
-      <Header score={score} highscore={highscore}>
+      <Header score={score}>
       </Header>
       <CardContainer cards={cards} cardClicked={cardClicked}>
       </CardContainer>

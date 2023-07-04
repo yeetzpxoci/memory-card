@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import "./style.css"
 
 import Header from "./Header"
@@ -6,7 +6,6 @@ import CardContainer from "./CardContainer";
 
 function App() {
   const[score, setScore] = useState(0);
-  const [highscore, setHighscore] = useState(0);
 
   const [cards, updateCards] = useState([
     { id: 1, name: 'Isaac', clicked: false, src: 'https://www.spriters-resource.com/resources/sheet_icons/61/64491.png?updated=1460951999' },
@@ -23,12 +22,6 @@ function App() {
     { id: 12, name: 'Lilith', clicked: false, src: 'https://www.spriters-resource.com/resources/sheet_icons/73/76018.png?updated=1465922550' }
   ]);
 
-  function resetCards() {
-    const newCards = [...cards];
-    newCards.map(card => card.clicked = false);
-    updateCards(newCards);
-  }
-
   const randomizeCards = () => {
     const newCards = [...cards];
     for (var i = newCards.length - 1; i > 0; i--) {
@@ -41,37 +34,22 @@ function App() {
   }
 
   const cardClicked = (cardID) => () => {
-    const cardIndex = cards.findIndex(card => card.id === cardID);
-    const card = cards[cardIndex];
-
+    const card = cards.find(card => card.id == cardID);
+    const cardIndex = cards.findIndex(card => card.id == cardID);
     if (!card.clicked) {
-      const newScore = score + 1;
-      setScore(newScore);
-
-      if (highscore < newScore) {
-        setHighscore(newScore);
-      }
-
+      setScore(score + 1);
       card.clicked = true;
-    } else {
-      setScore(0);
-      resetCards();
+      const newCards = [...cards]
+      newCards[cardIndex] = card;
+      updateCards(newCards);
     }
-
-    const updatedCards = [...cards];
-    updatedCards[cardIndex] = card;
-
-    updateCards(updatedCards);
     randomizeCards();
   }
 
-  useEffect(() => {
-    randomizeCards();
-  }, []);
-
   return (
-    <div id='content'>
-      <Header score={score} highscore={highscore}>
+    <div>
+      <Header>
+        {score}
       </Header>
       <CardContainer cards={cards} cardClicked={cardClicked}>
       </CardContainer>
